@@ -1,0 +1,31 @@
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore virtual environment
+RNN_ENV/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore environment files
+.env
+.env.*
+
+# Ignore log files
+*.log
+
+# Ignore model and scaler files (optional, if you don't want to commit them)
+*.keras
+*.save
+*.h5
+
+# Ignore other common temporary files
+*.tmp
+*.bak
+*.swp
