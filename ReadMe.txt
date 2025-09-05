@@ -5,7 +5,7 @@
 Description:
 -------------
 Predict the next performance index of a sensor system using
-the last 40 sequential readings from:
+the last sequential readings from three sensors:
 
     - Temperature
     - Vibration
@@ -13,33 +13,44 @@ the last 40 sequential readings from:
 
 Supported Models:
 -----------------
-    1. RNN (Recurrent Neural Network)
-    2. LSTM (Long Short-Term Memory Network)
+    1. RNN (Recurrent Neural Network) - requires 20 sequential readings
+    2. LSTM (Long Short-Term Memory Network) - requires 40 sequential readings
 
 ------------------------------------------------------------
 HOW IT WORKS
 ------------------------------------------------------------
 
 1. Input Sequences:
-   - Provide the last 40 values for each sensor (comma-separated)
+   - Provide the last readings for each sensor (comma-separated)
+   - Sequence length depends on the selected model:
+        LSTM: 40 values per sensor
+        RNN: 20 values per sensor
    - Example:
-        Temperature: 30.1, 30.5, 29.9, ... (40 values)
-        Vibration: 0.02, 0.05, 0.03, ... (40 values)
-        Pressure: 101.2, 101.5, 101.3, ... (40 values)
+        Temperature: 45.88, 44.86, 45.04, ... (20 or 40 values)
+        Vibration:   0.31, 0.32, 0.30, ... (20 or 40 values)
+        Pressure:    101.15, 101.08, 101.18, ... (20 or 40 values)
 
 2. Model Selection:
    - Choose between RNN or LSTM
-   - The selected model predicts the next performance_index
+   - The selected model predicts the next `performance_index` based on the input sequences
+
+3. Output:
+   - Predicted `performance_index`
+   - Performance label:
+        ⚠️ Need Maintenance   → Poor performance
+        ℹ️ Normal              → Acceptable performance
+        ✅ Excellent           → Good performance
+   - Performance score (0–100 scale) visualized as a progress bar
 
 ------------------------------------------------------------
 TECH STACK
 ------------------------------------------------------------
 - Python 3.10+
 - TensorFlow / Keras – RNN & LSTM model training & inference
-- NumPy & Pandas – Data handling
-- Scikit-learn – Preprocessing & scaling
-- Streamlit – Web app for predictions
-- Matplotlib / Seaborn – Data visualization
+- NumPy – Numerical operations and array handling
+- Scikit-learn – Preprocessing & scaling (input/output)
+- Streamlit – Interactive web app for predictions
+- Matplotlib – Plotting sensor sequences
 
 ------------------------------------------------------------
 INSTALLATION
@@ -67,31 +78,33 @@ Open in your browser:
 
 Input Example:
 --------------
-Temperature: 30.1, 30.5, 29.9, ... (40 values)
-Vibration:   0.02, 0.05, 0.03, ... (40 values)
-Pressure:    101.2, 101.5, 101.3, ... (40 values)
+Temperature: 45.88, 44.86, 45.04, 44.15, 44.67, ... (20 or 40 values)
+Vibration:   0.31, 0.32, 0.30, 0.30, 0.34, ... (20 or 40 values)
+Pressure:    101.15, 101.08, 101.18, 101.26, 101.48, ... (20 or 40 values)
 
 Output:
 --------
-Predicted performance_index
+Predicted `performance_index`, performance label, and score
 
 ------------------------------------------------------------
 PROJECT STRUCTURE
 ------------------------------------------------------------
 Sensor-Performance-Prediction/
- ┣ app.py               # Streamlit app
- ┣ model_rnn.h5         # Pre-trained RNN model
- ┣ model_lstm.h5        # Pre-trained LSTM model
- ┣ requirements.txt     # Dependencies
- ┣ README.txt           # Documentation
- ┗ data/                # Sample datasets
-
+ ┣ app.py                # Streamlit application
+ ┣ lstm_sensor_model.keras  # Pre-trained LSTM model
+ ┣ saved_rnn_model.keras     # Pre-trained RNN model
+ ┣ scaler_x.save          # Input scaler
+ ┣ scaler_y.save          # Output scaler
+ ┣ requirements.txt       # Python dependencies
+ ┣ README.txt             # Documentation
+ 
 ------------------------------------------------------------
 FUTURE IMPROVEMENTS
 ------------------------------------------------------------
 - Add support for more advanced models (GRU, Transformer)
 - Deploy on Streamlit Cloud / Heroku / Docker
-- Improve visualization of input sequences & predictions
+- Enhance visualization of input sequences & predictions
+- Add automated data validation for sequence length and format
 
 ------------------------------------------------------------
 CONTRIBUTION
