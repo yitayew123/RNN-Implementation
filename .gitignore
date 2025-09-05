@@ -1,31 +1,15 @@
-# Ignore Python cache files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Ignore virtual environment
+# Ignore virtual environments
 RNN_ENV/
 
-# Ignore system files
-.DS_Store
-Thumbs.db
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
 
-# Ignore Jupyter notebook checkpoints
-.ipynb_checkpoints/
-
-# Ignore environment files
-.env
-.env.*
-
-# Ignore log files
-*.log
-
-# Ignore model and scaler files (optional, if you don't want to commit them)
+# Ignore model files
+*.pkl
 *.keras
-*.save
-*.h5
+lstm_sensor_model.keras
+saved_rnn_model.keras
 
-# Ignore other common temporary files
-*.tmp
-*.bak
-*.swp
+
