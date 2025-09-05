@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 source RNN_ENV/bin/activate
+=======
+source XGBOOST_ENV/Scripts/activate
+>>>>>>> cd9eebd82430d043443df28bb2046674f644def4

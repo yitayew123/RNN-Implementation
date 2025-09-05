@@ -1,10 +1,15 @@
 # Ignore virtual environments
+<<<<<<< HEAD
 RNN_ENV/
+=======
+XGBOOST_ENV/
+>>>>>>> cd9eebd82430d043443df28bb2046674f644def4
 
 # Ignore Python cache
 __pycache__/
 *.pyc
 *.pyo
+<<<<<<< HEAD
 
 # Ignore model files
 *.pkl
@@ -12,4 +17,14 @@ __pycache__/
 lstm_sensor_model.keras
 saved_rnn_model.keras
 
+=======
+*.pkl
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+# Ignore model files
+xgb_model.pkl
+model_artifacts.pkl
+>>>>>>> cd9eebd82430d043443df28bb2046674f644def4
 
