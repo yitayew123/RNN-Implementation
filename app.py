@@ -162,3 +162,4 @@ if X_input is not None and st.button("Predict Performance Index"):  # Run only i
     ax.legend()
     # Render plot in Streamlit
     st.pyplot(fig)
+#end of App 
